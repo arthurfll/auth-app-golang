@@ -19,7 +19,11 @@ public class GetAllNotesFunction
     [Function("GetAllNotesFunction")]
     public IActionResult Run([HttpTrigger(AuthorizationLevel.Anonymous, "get")] HttpRequest req)
     {
-        DefaultAzureCredential credential = new();
+
+        var credential = new ManagedIdentityCredential(
+            clientId: Environment.GetEnvironmentVariable("AZURE_CLIENT_ID")
+        );
+        
         TableServiceClient serviceClient = new(
             endpoint: new Uri("https://arthurfll8059.table.core.windows.net/"),
             credential

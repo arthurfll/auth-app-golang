@@ -23,7 +23,7 @@ public class GetAllNotesFunction
         var credential = new ManagedIdentityCredential(
             clientId: Environment.GetEnvironmentVariable("AZURE_CLIENT_ID")
         );
-        
+
         TableServiceClient serviceClient = new(
             endpoint: new Uri("https://arthurfll8059.table.core.windows.net/"),
             credential
@@ -34,8 +34,6 @@ public class GetAllNotesFunction
         );
 
         var entities = client.Query<TableEntity>().ToList();
-
-
 
         _logger.LogInformation("C# HTTP trigger function processed a request.");
         return new OkObjectResult(entities);

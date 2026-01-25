@@ -1,8 +1,8 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using azure_labs.Models;
+using Core.Models;
 
-namespace azure_labs.Controllers;
+namespace Core.Controllers;
 
 public class HomeController : Controller
 {
@@ -19,6 +19,12 @@ public class HomeController : Controller
     }
 
     public IActionResult Privacy()
+    {
+        return View();
+    }
+
+    [HttpGet]
+    public IActionResult List()
     {
         return View();
     }

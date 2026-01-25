@@ -1,3 +1,4 @@
+using Core.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,6 +10,7 @@ namespace Core.Data
             : base(options)
         {
         }
+        public DbSet<Revisao> Revisoes {get;set;}
     }
 }
 

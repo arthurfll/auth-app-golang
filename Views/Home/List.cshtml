@@ -1,1 +1,175 @@
-Lista
+@model List<Revisao>
+
+<div class="w-100 mt-4 px-3">
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">Controle de Revisões</h4>
+        </div>
+
+        <div class="card-body p-0">
+            <table class="table table-bordered table-hover align-middle mb-0">
+                <thead class="table-light text-center">
+                    <tr>
+                        <th style="min-width:180px">Conceito</th>
+                        <th style="min-width:220px">Link</th>
+                        <th style="min-width:160px">Motivo</th>
+                        <th style="min-width:160px">Correção</th>
+
+                        <th style="min-width:160px">Rev. 1</th>
+                        <th style="min-width:80px">OK</th>
+
+                        <th style="min-width:160px">Rev. 2</th>
+                        <th style="min-width:80px">OK</th>
+
+                        <th style="min-width:160px">Rev. 3</th>
+                        <th style="min-width:80px">OK</th>
+
+                        <th style="min-width:160px">Rev. 4</th>
+                        <th style="min-width:80px">OK</th>
+
+                        <th style="min-width:160px">Rev. 5</th>
+                        <th style="min-width:80px">OK</th>
+
+                        <th style="min-width:120px">Ações</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+@foreach (var i in Model)
+{
+    <tr>
+        <form method="post" asp-action="Update">
+            <td>
+                <input class="form-control"
+                       type="text"
+                       name="Conceito"
+                       value="@i.Conceito" />
+            </td>
+
+            <td>
+                <input class="form-control"
+                       type="text"
+                       name="Link"
+                       value="@i.Link"
+                       placeholder="https://..." />
+            </td>
+
+            <td>
+                <select class="form-select" name="MotivoDoErro">
+                    <option value="Pegadinha" selected="@(i.MotivoDoErro == MotivoDoErroEnum.Pegadinha)">Pegadinha</option>
+                    <option value="Raciocinio" selected="@(i.MotivoDoErro == MotivoDoErroEnum.Raciocinio)">Raciocínio</option>
+                    <option value="Conhecimento" selected="@(i.MotivoDoErro == MotivoDoErroEnum.Conhecimento)">Conhecimento</option>
+                </select>
+            </td>
+
+            <td>
+                <input class="form-control"
+                       type="date"
+                       name="DataDaCorrecao"
+                       value="@i.DataDaCorrecao.ToString("yyyy-MM-dd")" />
+            </td>
+
+            <td>
+                <input class="form-control"
+                       type="date"
+                       name="Revisao1"
+                       value="@i.Revisao1.ToString("yyyy-MM-dd")" />
+            </td>
+
+            <td class="text-center">
+                <input class="form-check-input"
+                       type="checkbox"
+                       name="Revisao1Check"
+                       value="true"
+                       @(i.Revisao1Check ? "checked" : "") />
+                <input type="hidden" name="Revisao1Check" value="false" />
+            </td>
+
+            <td class="text-center fw-semibold">
+                @i.Revisao2.ToString("dd/MM/yyyy")
+            </td>
+            <td class="text-center">
+                <input class="form-check-input"
+                       type="checkbox"
+                       name="Revisao2Check"
+                       value="true"
+                       @(i.Revisao2Check ? "checked" : "") />
+                <input type="hidden" name="Revisao2Check" value="false" />
+            </td>
+
+            <td class="text-center fw-semibold">
+                @i.Revisao3.ToString("dd/MM/yyyy")
+            </td>
+            <td class="text-center">
+                <input class="form-check-input"
+                       type="checkbox"
+                       name="Revisao3Check"
+                       value="true"
+                       @(i.Revisao3Check ? "checked" : "") />
+                <input type="hidden" name="Revisao3Check" value="false" />
+            </td>
+
+            <td class="text-center fw-semibold">
+                @i.Revisao4.ToString("dd/MM/yyyy")
+            </td>
+            <td class="text-center">
+                <input class="form-check-input"
+                       type="checkbox"
+                       name="Revisao4Check"
+                       value="true"
+                       @(i.Revisao4Check ? "checked" : "") />
+                <input type="hidden" name="Revisao4Check" value="false" />
+            </td>
+
+            <td class="text-center fw-semibold">
+                @i.Revisao5.ToString("dd/MM/yyyy")
+            </td>
+            <td class="text-center">
+                <input class="form-check-input"
+                       type="checkbox"
+                       name="Revisao5Check"
+                       value="true"
+                       @(i.Revisao5Check ? "checked" : "") />
+                <input type="hidden" name="Revisao5Check" value="false" />
+            </td>
+
+            <td class="text-center">
+                <input type="hidden" name="Id" value="@i.Id" />
+                <button type="submit" class="btn btn-primary">
+                    Salvar
+                </button>
+            </td>
+        </form>
+    </tr>
+}
+
+<!-- CREATE -->
+<tr class="table-light">
+    <form method="post" asp-action="Create">
+        <td><input class="form-control" name="Conceito" /></td>
+        <td><input class="form-control" name="Link" /></td>
+        <td>
+            <select class="form-select" name="MotivoDoErro">
+                <option value="">Selecione</option>
+                <option value="Pegadinha">Pegadinha</option>
+                <option value="Raciocinio">Raciocínio</option>
+                <option value="Conhecimento">Conhecimento</option>
+            </select>
+        </td>
+        <td><input class="form-control" type="date" name="DataDaCorrecao" /></td>
+
+        <td colspan="10"></td>
+
+        <td class="text-center">
+            <button type="submit" class="btn btn-secondary">
+                Adicionar
+            </button>
+        </td>
+    </form>
+</tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

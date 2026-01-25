@@ -22,4 +22,4 @@ EXPOSE 7000
 
 ENV ASPNETCORE_URLS=http://0.0.0.0:7000
 
-ENTRYPOINT ["dotnet", "core.dll"]
+ENTRYPOINT ["dotnet", "azure-labs.dll"]

@@ -1,6 +1,5 @@
 FROM postgres:17.2-alpine
 
-# Variáveis de ambiente para configuração do PostgreSQL
 ENV POSTGRES_DB=db \
     POSTGRES_USER=admin \
     POSTGRES_PASSWORD="Alfa!2025" \

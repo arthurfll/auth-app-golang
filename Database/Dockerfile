@@ -2,7 +2,7 @@ FROM postgres:17.2-alpine
 
 ENV POSTGRES_DB=db \
     POSTGRES_USER=admin \
-    POSTGRES_PASSWORD="Alfa!2025" \
+    POSTGRES_PASSWORD="admin" \
     PGDATA=/var/lib/postgresql/data/pgdata
 
 RUN echo "# Configurações de desenvolvimento" >> /usr/local/share/postgresql/postgresql.conf.sample && \

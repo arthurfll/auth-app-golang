@@ -11,6 +11,23 @@ services:
     networks:
       - application
 
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    restart: unless-stopped
+    ports:
+      - "5050:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./Database/PgAdmin:/var/lib/pgadmin
+    networks:
+      - application
+
   postgres:
     build: ./Database
     container_name: dev_postgres
@@ -20,7 +37,7 @@ services:
     volumes:
       - ./Database/Files:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U user -d db"]
+      test: ["CMD-SHELL", "pg_isready -U admin -d db"]
       interval: 10s
       timeout: 5s
       retries: 5
